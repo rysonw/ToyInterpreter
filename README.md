@@ -1,2 +1,2 @@
 # ToyInterpreter
-A mini-interpreter
+A mini-interpreter for a new programming language called Rye
