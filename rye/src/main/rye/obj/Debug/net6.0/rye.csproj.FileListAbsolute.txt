@@ -1,0 +1,15 @@
+C:\Users\ryson\Projects\ToyInterpreter\rye\src\main\rye\bin\Debug\net6.0\rye.exe
+C:\Users\ryson\Projects\ToyInterpreter\rye\src\main\rye\bin\Debug\net6.0\rye.deps.json
+C:\Users\ryson\Projects\ToyInterpreter\rye\src\main\rye\bin\Debug\net6.0\rye.runtimeconfig.json
+C:\Users\ryson\Projects\ToyInterpreter\rye\src\main\rye\bin\Debug\net6.0\rye.dll
+C:\Users\ryson\Projects\ToyInterpreter\rye\src\main\rye\bin\Debug\net6.0\rye.pdb
+C:\Users\ryson\Projects\ToyInterpreter\rye\src\main\rye\obj\Debug\net6.0\rye.csproj.AssemblyReference.cache
+C:\Users\ryson\Projects\ToyInterpreter\rye\src\main\rye\obj\Debug\net6.0\rye.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ryson\Projects\ToyInterpreter\rye\src\main\rye\obj\Debug\net6.0\rye.AssemblyInfoInputs.cache
+C:\Users\ryson\Projects\ToyInterpreter\rye\src\main\rye\obj\Debug\net6.0\rye.AssemblyInfo.cs
+C:\Users\ryson\Projects\ToyInterpreter\rye\src\main\rye\obj\Debug\net6.0\rye.csproj.CoreCompileInputs.cache
+C:\Users\ryson\Projects\ToyInterpreter\rye\src\main\rye\obj\Debug\net6.0\rye.dll
+C:\Users\ryson\Projects\ToyInterpreter\rye\src\main\rye\obj\Debug\net6.0\refint\rye.dll
+C:\Users\ryson\Projects\ToyInterpreter\rye\src\main\rye\obj\Debug\net6.0\rye.pdb
+C:\Users\ryson\Projects\ToyInterpreter\rye\src\main\rye\obj\Debug\net6.0\rye.genruntimeconfig.cache
+C:\Users\ryson\Projects\ToyInterpreter\rye\src\main\rye\obj\Debug\net6.0\ref\rye.dll
