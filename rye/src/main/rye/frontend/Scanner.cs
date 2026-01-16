@@ -80,6 +80,16 @@ namespace com.rysonw.rye.frontend
                 case '"': CheckString(); break;
                 
                 default:
+
+                    if (IsDigit(c))
+                    {
+                        Number();
+                    }
+                    else
+                    {
+                        Rye.Error(line, "Unexpected Character.");
+                    }
+
                     Rye.Error(line, "Unexpected error reading token...");
                     break;
             }
@@ -122,6 +132,33 @@ namespace com.rysonw.rye.frontend
             int length = current - start - 2;
             string value = length > 0 ? source.Substring(start + 1, length) : string.Empty;
             AddToken(TokenType.STRING, value);
+        }
+
+        private bool IsDigit(char c) {
+            return c >= '0' && c <= '9';
+        }
+
+        private void Number()
+        {
+            while (IsDigit(Peek())) Advance();
+
+            if (Peek() == '.' && IsDigit(PeekNext()))
+            {
+                Advance(); // consume '.'
+                while (IsDigit(Peek())) Advance();
+            }
+
+            string text = source.Substring(start, current - start);
+            if (double.TryParse(text, System.Globalization.NumberStyles.Number,
+                                System.Globalization.CultureInfo.InvariantCulture,
+                                out double value))
+            {
+                AddToken(TokenType.NUMBER, value);
+            }
+            else
+            {
+                Rye.Error(line, $"Invalid number literal: {text}");
+            }
         }
 
         private bool IsAtEnd() => current >= source.Length;
