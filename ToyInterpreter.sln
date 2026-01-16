@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rye", "rye", "{C522B678-0A15-BB43-F212-AD505C91D3A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{90496CF8-2FF4-B10E-E837-DC311E2826E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "main", "main", "{695F4DFA-19ED-71E1-381E-4860680E5290}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rye", "rye\src\main\rye\rye.csproj", "{6AE14315-5C28-AE5B-1133-B986A0254C08}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6AE14315-5C28-AE5B-1133-B986A0254C08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AE14315-5C28-AE5B-1133-B986A0254C08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AE14315-5C28-AE5B-1133-B986A0254C08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AE14315-5C28-AE5B-1133-B986A0254C08}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{90496CF8-2FF4-B10E-E837-DC311E2826E7} = {C522B678-0A15-BB43-F212-AD505C91D3A6}
+		{695F4DFA-19ED-71E1-381E-4860680E5290} = {90496CF8-2FF4-B10E-E837-DC311E2826E7}
+		{6AE14315-5C28-AE5B-1133-B986A0254C08} = {695F4DFA-19ED-71E1-381E-4860680E5290}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C566653B-B98B-47EF-8BC1-B33E84B98E6B}
+	EndGlobalSection
+EndGlobal

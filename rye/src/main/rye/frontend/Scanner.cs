@@ -25,68 +25,108 @@ namespace com.rysonw.rye.frontend
                 ScanToken();
             }
 
-            tokens.Add(new Token(TokenType.EOF, string.Empty, line));
+            tokens.Add(new Token(TokenType.EOF, string.Empty, null, line));
             return tokens;
         }
 
         private void ScanToken()
         {
             char c = Advance();
-            if (char.IsWhiteSpace(c))
-            {
-                if (c == '\n') line++;
-                return;
-            }
 
-            if (char.IsLetter(c) || c == '_')
+            switch (c)
             {
-                Identifier();
-                return;
-            }
+                // Single
+                case '(': AddToken(TokenType.LEFT_PAREN); break;
+                case ')': AddToken(TokenType.RIGHT_PAREN); break;
+                case '{': AddToken(TokenType.LEFT_BRACE); break;
+                case '}': AddToken(TokenType.RIGHT_BRACE); break;
+                case ',': AddToken(TokenType.COMMA); break;
+                case '.': AddToken(TokenType.DOT); break;
+                case '-': AddToken(TokenType.MINUS); break;
+                case '+': AddToken(TokenType.PLUS); break;
+                case ';': AddToken(TokenType.SEMICOLON); break;
+                case '*': AddToken(TokenType.STAR); break;
 
-            if (char.IsDigit(c))
-            {
-                Number();
-                return;
-            }
+                // Double
+                case '!': AddToken(match('=') ? TokenType.BANG_EQUAL : TokenType.BANG); break;
+                case '=': AddToken(match('=') ? TokenType.EQUAL_EQUAL : TokenType.EQUAL); break;
+                case '<': AddToken(match('=') ? TokenType.LESS_EQUAL : TokenType.LESS); break;
+                case '>': AddToken(match('=') ? TokenType.GREATER_EQUAL : TokenType.GREATER); break;
+                case '/':
+                    if (match('/'))
+                    {
+                        // Find the position for end of comment
+                        while (Peek() != '\n' && !IsAtEnd())
+                        {
+                            Advance();
+                        }
+                    }
+                    else
+                    {
+                        AddToken(TokenType.SLASH);
+                    }
+                    break;
 
-            // For any other single character, treat its lexeme as a token (e.g., punctuation)
-            tokens.Add(new Token(TokenType.IDENTIFIER, c.ToString(), line));
+                // Whitespace (IGNORE)
+                case ' ':
+                case '\r':
+                case '\t':
+                    break;
+                case '\n':
+                    line++;
+                    break;
+
+                // Literals
+                case '"': CheckString(); break;
+                
+                default:
+                    Rye.Error(line, "Unexpected error reading token...");
+                    break;
+            }
         }
 
-        private void Identifier()
+        private bool match(char expected)
         {
-            while (!IsAtEnd() && (char.IsLetterOrDigit(Peek()) || Peek() == '_'))
-            {
-                Advance();
-            }
-            string text = source.Substring(start, current - start);
-            tokens.Add(new Token(TokenType.IDENTIFIER, text, line));
+            if (IsAtEnd()) { return false; }
+            if (source[current] != expected) { return false; }
+            current++;
+            return true;
         }
 
-        private void Number()
+        private void AddToken(TokenType type) {
+            AddToken(type, null);
+        }
+
+        private void AddToken(TokenType type, Object literal) {
+            Console.WriteLine($"Start: {start}; Current: {current}");
+            String text = source.Substring(start, current - start);
+            tokens.Add(new Token(type, text, literal, line));
+        }
+
+        private void CheckString()
         {
-            while (!IsAtEnd() && char.IsDigit(Peek()))
+            while (Peek() != '"' && !IsAtEnd())
             {
+                if (Peek() == '\n') line++;
                 Advance();
             }
-            // optional fraction part
-            if (!IsAtEnd() && Peek() == '.' && char.IsDigit(PeekNext()))
+
+            if (IsAtEnd())
             {
-                Advance(); // consume '.'
-                while (!IsAtEnd() && char.IsDigit(Peek()))
-                {
-                    Advance();
-                }
+                Rye.Error(line, "Unterminated String");
+                return;
             }
 
-            string text = source.Substring(start, current - start);
-            tokens.Add(new Token(TokenType.NUMBER, text, line));
+            Advance();
+
+            int length = current - start - 2;
+            string value = length > 0 ? source.Substring(start + 1, length) : string.Empty;
+            AddToken(TokenType.STRING, value);
         }
 
         private bool IsAtEnd() => current >= source.Length;
         private char Advance() => source[current++];
-        private char Peek() => IsAtEnd() ? '\0' : source[current];
+        private char Peek() => IsAtEnd() ? '\0' : source[current]; 
         private char PeekNext() => (current + 1) >= source.Length ? '\0' : source[current + 1];
     }
 }
